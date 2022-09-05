@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AboutMe,Skills,TESTIMONIALS
+from .models import AboutMe,Skills,TESTIMONIALS,Counts
 
 # Register your models here.
 
@@ -25,5 +25,13 @@ class TESTIMONIALS_admin(admin.ModelAdmin):
     class Meta:
         Model = TESTIMONIALS
 admin.site.register(TESTIMONIALS, TESTIMONIALS_admin)
+
+
+class Counts_admin(admin.ModelAdmin):
+    list_display = ['total_project', 'awards','create_at',]
+
+    class Meta:
+        Model = Counts
+admin.site.register(Counts, Counts_admin)
 
 

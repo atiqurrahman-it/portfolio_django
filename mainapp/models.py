@@ -57,6 +57,7 @@ class TESTIMONIALS(models.Model):
     name=models.CharField(max_length =80)
     designation=models.CharField(max_length=200)
     message=models.TextField()
+    profile_pic=models.ImageField(upload_to ='testimonials/',blank=True,null=True)
     create = models.DateTimeField(auto_now_add=True, null=True)
     update= models.DateTimeField(auto_now=True,null=True)
 
@@ -84,6 +85,23 @@ class Skills(models.Model):
         ordering = ["create_at"]
         verbose_name_plural = "Skills"
 
+
+class Counts(models.Model):
+    id = models.AutoField(primary_key=True)
+    total_project = models.IntegerField(blank=True,null=True)
+    hours_of_support =models.IntegerField(blank=True,null=True)
+    awards = models.IntegerField(blank=True,null=True)
+    happy_clients=models.IntegerField(blank=True,null=True)
+
+    create_at = models.DateTimeField(auto_now_add=True,null=True)
+    update_at = models.DateTimeField(auto_now=True,null=True)
+
+    
+
+    class Meta:
+        ordering = ["create_at"]
+        verbose_name_plural = "Counts"
+    
 
 class Contact(models.Model):
     id = models.AutoField(primary_key=True)
