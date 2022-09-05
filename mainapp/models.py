@@ -21,6 +21,7 @@ class AboutMe(models.Model):
     faceboock_link=models.URLField(blank=True)
     instagram_link = models.URLField(blank=True)
     twitter_link = models.URLField(blank=True)
+    linkedin = models.URLField(blank=True)
 
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
