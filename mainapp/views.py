@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,HttpResponse
-from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education,Experience
+from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education,Experience,Portfolio_Category,Portfolio
 from django.http import HttpResponseRedirect
 
 from .forms import UserContact
@@ -22,6 +22,8 @@ def HomePage(request):
     services=Service.objects.all().order_by('-id')[:6]
     educations=Education.objects.all().order_by('-id')[:3]
     experiences=Experience.objects.all().order_by('-id')[:2]
+    portfolio_cat=Portfolio_Category.objects.all().order_by('-id')[:5]
+    portfolio=Portfolio.objects.all().order_by('-id')
 
     # Contact part 
     if request.method == 'POST':
@@ -47,6 +49,8 @@ def HomePage(request):
         "services":services,
         "educations":educations,
         "experiences":experiences,
+        "portfolio_cat":portfolio_cat,
+        "portfolio":portfolio,
         "form":form,
     }
     return render(request,'index.html',data)

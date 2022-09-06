@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (TESTIMONIALS, AboutMe, Contact, Counts, Education,
-                     Experience, Service, Skills)
+                     Experience, Service, Skills,Portfolio_Category,Portfolio)
 
 # Register your models here.
 
@@ -65,6 +65,28 @@ class Experience_admin(admin.ModelAdmin):
     class Meta:
         Model = Experience
 admin.site.register(Experience, Experience_admin)
+
+
+class Portfolio_Category_admin(admin.ModelAdmin):
+    list_display = ['name', 'create_at', 'update_at']
+    search_fields = ["name", 'create_at']
+    list_filter = ['create_at']
+
+    class Meta:
+        Model = Portfolio_Category
+
+
+admin.site.register(Portfolio_Category, Portfolio_Category_admin)
+
+
+class Portfolio_admin(admin.ModelAdmin):
+    list_display = ['title', 'pro_category', 'image_tag', 'create_at', 'update_at']
+    search_fields = ["title", 'create_at']
+    list_filter = ['create_at']
+
+    class Meta:
+        Model = Portfolio
+admin.site.register(Portfolio, Portfolio_admin)
 
 
 

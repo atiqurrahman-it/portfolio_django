@@ -87,10 +87,10 @@
         </div>
       </div>
        
-      <form action="{%url 'homepage' %}" method="post" role="form" class="php-email-form mt-4">
+      <form action="{% url 'homepage' %}" method="POST" role="form" class="php-email-form mt-4">
         {% csrf_token %}
-       {{ form.as_p}}
-        {{ form.error }}
+         {{ form.as_p}}
+     
         <div class="text-center">
           <input type="submit"  value="Send Message" class="btn btn-primary py-3 px-5">
         </div> 

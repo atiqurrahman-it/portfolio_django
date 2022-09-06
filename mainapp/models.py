@@ -159,6 +159,34 @@ class Service(models.Model):
     def __str__(self):
         return self.title
 
+class Portfolio_Category(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Portfolio(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(blank=True, max_length=300)
+    pro_category = models.ForeignKey(Portfolio_Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='portfolio_img',blank=True)
+    details =models.TextField(blank=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def image_tag(self):
+        from django.utils.html import mark_safe
+        return mark_safe('<img src="%s" width="100px" height="100px" />' % (self.image.url))
+
+    image_tag.short_description = 'Image'
+
+    def __str__(self):
+        return self.title
+
 
 class Contact(models.Model):
     id = models.AutoField(primary_key=True)
