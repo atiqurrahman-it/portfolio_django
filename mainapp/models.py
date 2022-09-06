@@ -1,4 +1,5 @@
 from tkinter.tix import Tree
+from turtle import Turtle
 from django.db import models
 
 # Create your models here.
@@ -54,6 +55,25 @@ class AboutMe(models.Model):
         ordering = ["create_at"]
         verbose_name_plural = "AboutMe"
 
+class Counts(models.Model):
+    id = models.AutoField(primary_key=True)
+    total_project = models.IntegerField(blank=True,null=True)
+    hours_of_support =models.IntegerField(blank=True,null=True)
+    awards = models.IntegerField(blank=True,null=True)
+    happy_clients=models.IntegerField(blank=True,null=True)
+
+    create_at = models.DateTimeField(auto_now_add=True,null=True)
+    update_at = models.DateTimeField(auto_now=True,null=True)
+
+    
+
+    class Meta:
+        ordering = ["create_at"]
+        verbose_name_plural = "Counts"
+    
+
+
+
 
 class TESTIMONIALS(models.Model):
     id = models.AutoField(primary_key=True)
@@ -89,55 +109,6 @@ class Skills(models.Model):
         verbose_name_plural = "Skills"
 
 
-class Counts(models.Model):
-    id = models.AutoField(primary_key=True)
-    total_project = models.IntegerField(blank=True,null=True)
-    hours_of_support =models.IntegerField(blank=True,null=True)
-    awards = models.IntegerField(blank=True,null=True)
-    happy_clients=models.IntegerField(blank=True,null=True)
-
-    create_at = models.DateTimeField(auto_now_add=True,null=True)
-    update_at = models.DateTimeField(auto_now=True,null=True)
-
-    
-
-    class Meta:
-        ordering = ["create_at"]
-        verbose_name_plural = "Counts"
-    
-
-class Contact(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
-    email = models.EmailField()
-    subject = models.CharField(max_length=300)
-    Meassage = models.TextField()
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
-
-
-
-
-
-class Contact(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
-    email = models.EmailField(blank=True)
-    subject = models.CharField(max_length=300,blank=True)
-    Meassage = models.TextField(blank=True)
-    create_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
-    update_at = models.DateTimeField(auto_now=True,null=True,blank=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        ordering = ["create_at"]
-        verbose_name_plural = "Contact"
 
 
 class Education(models.Model):
@@ -151,6 +122,24 @@ class Education(models.Model):
 
     def __str__(self):
         return self.lavel
+
+class Experience(models.Model):
+    id = models.AutoField(primary_key=True)
+    description = models.CharField(max_length=150)
+    location = models.CharField(max_length=220)
+    year = models.CharField(max_length=10)
+    lavel_1 = models.CharField(max_length=250,blank=True,null=True)
+    lavel_2 = models.CharField(max_length=250,blank=True,null=True)
+    lavel_3 = models.CharField(max_length=250,blank=True,null=True)
+    lavel_4 = models.CharField(max_length=250,blank=True,null=True)
+    lavel_5 = models.CharField(max_length=250,blank=True,null=True)
+
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.description
+
 
 
 class Service(models.Model):
@@ -169,6 +158,23 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Contact(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(blank=True)
+    subject = models.CharField(max_length=300,blank=True)
+    Meassage = models.TextField(blank=True)
+    create_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    update_at = models.DateTimeField(auto_now=True,null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["create_at"]
+        verbose_name_plural = "Contact"
 
 
     

@@ -1,17 +1,17 @@
 from django.shortcuts import render,get_object_or_404,HttpResponse
-from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education
+from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education,Experience
+from django.http import HttpResponseRedirect
 
 from .forms import UserContact
 
 # Create your views here.
 
 def HomePage(request):
-    
     try:
         aboutMe = get_object_or_404(AboutMe)
     except:
         aboutMe = AboutMe.objects.latest('id') # if two or more data in databse then last data find out 
-
+    
     try:
         count = get_object_or_404(Counts)
     except:
@@ -21,24 +21,22 @@ def HomePage(request):
     testimonial=TESTIMONIALS .objects.all().order_by('-id')
     services=Service.objects.all().order_by('-id')[:6]
     educations=Education.objects.all().order_by('-id')[:3]
+    experiences=Experience.objects.all().order_by('-id')[:2]
 
     # Contact part 
     if request.method == 'POST':
+        print(request.post)
         form = UserContact(request.POST)
-        print(request.POST)
         if form.is_valid():
-            name = form.cleaned_data.get('name')
-            email = form.cleaned_data.get('email')
-            subject = form.cleaned_data.get('subject')
             Message = form.cleaned_data.get('Message')
-            print(name)
-            print(email)
-            print(subject)
-            Counts.objects.create(name=name, email=email, subject=subject, Meassage=Message)
+            print(Message)
+            #Counts.objects.create(name=name, email=email, subject=subject, Meassage=Message)
+            return HttpResponseRedirect('/thanks/')
         else:
-            print("error form ")
+            print("form is error")
     else:
-        contact=UserContact()
+        form = UserContact()
+    # End contact 
 
 
     data={
@@ -48,14 +46,12 @@ def HomePage(request):
         "testimonials":testimonial,
         "services":services,
         "educations":educations,
-        "form":contact,
+        "experiences":experiences,
+        "form":form,
     }
+    return render(request,'index.html',data)
 
 
 
-    return render(request,'mainapp/index.html',data)
 
-def ContactPage(request):
-   
-    return render(request,'mainapp/about_me.html')
     

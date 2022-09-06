@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import AboutMe,Skills,TESTIMONIALS,Counts,Contact,Service,Education
+
+from .models import (TESTIMONIALS, AboutMe, Contact, Counts, Education,
+                     Experience, Service, Skills)
 
 # Register your models here.
 
@@ -53,6 +55,16 @@ class Education_admin(admin.ModelAdmin):
     class Meta:
         Model = Education
 admin.site.register(Education, Education_admin)
+
+
+class Experience_admin(admin.ModelAdmin):
+    list_display = ['description', 'create_at', 'update_at']
+    search_fields = ["description", 'year']
+    list_filter = ['create_at', 'description']
+
+    class Meta:
+        Model = Experience
+admin.site.register(Experience, Experience_admin)
 
 
 
