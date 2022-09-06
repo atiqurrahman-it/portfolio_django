@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from django.db import models
 
 # Create your models here.
@@ -15,8 +16,9 @@ class AboutMe(models.Model):
     designation=models.CharField(max_length=200)
     bio=models.CharField(max_length=230)
     about_me=models.TextField()
-    degree = models.TextField(max_length=600)
-    city = models.TextField(max_length=600)
+    degree = models.CharField(max_length=100)
+    city = models.CharField(max_length=230)
+    full_adders=models.CharField(max_length=150,blank=True,null=True)
     birthday = models.DateField(blank=True,null=True)
     age=models.IntegerField(blank=True,null=True)
     email = models.EmailField(verbose_name='email address', max_length=255,unique=True,)
@@ -33,6 +35,7 @@ class AboutMe(models.Model):
     twitter_link = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
     github = models.URLField(blank=True)
+    skype= models.URLField(blank=True)
 
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -114,6 +117,59 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
+
+
+class Contact(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(blank=True)
+    subject = models.CharField(max_length=300,blank=True)
+    Meassage = models.TextField(blank=True)
+    create_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
+    update_at = models.DateTimeField(auto_now=True,null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["create_at"]
+        verbose_name_plural = "Contact"
+
+
+class Education(models.Model):
+    id = models.AutoField(primary_key=True)
+    lavel = models.CharField(max_length=150)
+    campus_name = models.CharField(max_length=220)
+    year = models.CharField(max_length=10)
+    details = models.TextField()
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.lavel
+
+
+class Service(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(blank=True, max_length=300)
+    sort_description = models.TextField(blank=True)
+    logo = models.ImageField(upload_to='service_img')
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def image_tag(self):
+        from django.utils.html import mark_safe
+        return mark_safe('<img src="%s" width="100px" height="100px" />' % (self.logo.url))
+
+    image_tag.short_description = 'Image'
+
+    def __str__(self):
+        return self.title
+
 
     
     

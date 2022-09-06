@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AboutMe,Skills,TESTIMONIALS,Counts
+from .models import AboutMe,Skills,TESTIMONIALS,Counts,Contact,Service,Education
 
 # Register your models here.
 
@@ -33,5 +33,39 @@ class Counts_admin(admin.ModelAdmin):
     class Meta:
         Model = Counts
 admin.site.register(Counts, Counts_admin)
+
+
+class Service_admin(admin.ModelAdmin):
+    list_display = ['title', 'image_tag', 'create_at', 'update_at']
+    search_fields = ["title", 'create_at']
+    list_filter = ['create_at']
+
+    class Meta:
+        Model = Service
+admin.site.register(Service, Service_admin)
+
+
+class Education_admin(admin.ModelAdmin):
+    list_display = ['lavel', 'year', 'create_at', 'update_at']
+    search_fields = ["lavel", 'year']
+    list_filter = ['create_at', 'lavel']
+
+    class Meta:
+        Model = Education
+admin.site.register(Education, Education_admin)
+
+
+
+
+class Contact_admin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'create_at', 'update_at']
+    search_fields = ["name", 'email']
+    list_filter = ['create_at', 'name', 'email']
+
+    class Meta:
+        Model = Contact
+
+
+admin.site.register(Contact, Contact_admin)
 
 

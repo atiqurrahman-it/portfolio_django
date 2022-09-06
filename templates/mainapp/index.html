@@ -25,7 +25,79 @@
   <!-- End Portfolio Section -->
 
   <!-- ======= Contact Section loaded ======= -->
-  {% include 'include_page/contact.html' %}
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Contact Me</p>
+      </div>
+
+      <div class="row mt-2">
+
+        <div class="col-md-6 d-flex align-items-stretch">
+          <div class="info-box">
+            <i class="bx bx-map"></i>
+            <h3>My Address</h3>
+            {% if aboutme.full_adders%}
+            <p>{{aboutme.full_adders}} </p>
+            {% else%}
+            <p>A108 Adam Street, New York, NY 535022</p>
+            {%endif%}
+          </div>
+        </div>
+
+        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+          <div class="info-box">
+            <i class="bx bx-share-alt"></i>
+            <h3>Social Profiles</h3>
+            {% if aboutme%}
+            <div class="social-links">
+              <a  href="{{aboutme.twitter_link}}"  target="_blank" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a  href="{{aboutme.faceboock_link}}" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="{{aboutme.instagram_link}}" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="{{aboutme.skype}}" target="_blank" class="google-plus"><i class="bi bi-skype"></i></a>
+              <a href="{{aboutme.linkedin}}" target="_blank" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+            {% else%}
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i>social link not provide </a>
+            </div>
+            {%endif%}
+          </div>
+        </div>
+
+        <div class="col-md-6 mt-4 d-flex align-items-stretch">
+          <div class="info-box">
+            <i class="bx bx-envelope"></i>
+            <h3>Email Me</h3>
+            {% if aboutme.email %}
+            <p>{{aboutme.email}}</p>
+            {%endif%}
+          </div>
+        </div>
+        <div class="col-md-6 mt-4 d-flex align-items-stretch">
+          <div class="info-box">
+            <i class="bx bx-phone-call"></i>
+            <h3>Call Me</h3>
+           {% if aboutme.phone %}
+            <p>+880{{aboutme.phone}}</p>
+            {%endif%}
+          </div>
+        </div>
+      </div>
+       
+      <form action="" method="post" role="form" class="php-email-form mt-4">
+        {% csrf_token %}
+       {{ form.as_p}}
+        {{ form.error }}
+        <div class="text-center">
+          <input type="submit"  value="Send Message" class="btn btn-primary py-3 px-5">
+        </div> 
+      </form>
+
+    </div>
+  </section>
  <!-- End Contact Section -->
 
   <!-- <div class="credits"> -->
