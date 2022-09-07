@@ -57,5 +57,26 @@ def HomePage(request):
 
 
 
+def PortfolioSingleView(request,id):
+    try:
+        pro =get_object_or_404(Portfolio,id=id)
+    except:
+         pro =get_object_or_404(Portfolio,id=id)
+
+    #optinal part for body bacground pictuer show er jonno
+    try:
+        aboutMe = get_object_or_404(AboutMe)
+    except:
+        aboutMe = AboutMe.objects.latest('id') 
+        
+
+    data={
+        "portfoliodetails":pro,
+        "aboutme":aboutMe,
+    }
+    return render(request,'portfolio-details.html',data)
+
+
+
 
     

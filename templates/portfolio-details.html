@@ -1,0 +1,56 @@
+{% extends "base.html" %} 
+
+{% block title %} Portfolio Details {% endblock %} 
+
+{%block main_contasint %}
+
+<!-- ======= Portfolio Details ======= -->
+
+<!-- ======= Portfolio Details ======= -->
+<div id="portfolio-details" class="portfolio-details">
+  <div class="container">
+    <div class="row">
+      {% if portfoliodetails %}
+      <div class="col-lg-8">
+        <h2 class="portfolio-title">{{portfoliodetails.title}}</h2>
+
+        <div class="portfolio-details-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide">
+              <img src="{{portfoliodetails.image.url}}" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="" />
+            </div>
+
+            <div class="swiper-slide">
+              <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="" />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      {%endif%}
+      {% if portfoliodetails %}
+      <div class="col-lg-4 portfolio-info">
+        <h3>Project information</h3>
+        <ul>
+          <li><strong>Category</strong>: {{portfoliodetails.full_catefory_name}}</li>
+          <li><strong>Client</strong>:{{portfoliodetails.Client_adderss}}</li>
+          <li><strong>Project date</strong>:  {{portfoliodetails.create_at}}</li>
+          {% if portfoliodetails.project_url %}
+          <li><strong>Project URL</strong>: <a href="#"> {{portfoliodetails.project_url}}</a></li>
+          {%else%}
+          <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+          {% endif %}
+        </ul>
+        <p>{{portfoliodetails.details}}</p>
+      </div>
+      {%endif%}
+    </div>
+  </div>
+</div>
+<!-- End Portfolio Details -->
+
+{%endblock%}

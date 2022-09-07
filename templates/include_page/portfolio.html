@@ -32,7 +32,7 @@
               <p>{{port.pro_category.name}}</p>
               <div class="portfolio-links">
                 <a href="{{port.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{port.title}}"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                <a href="{% url 'singleportfolio' id=port.id %}"  ><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
