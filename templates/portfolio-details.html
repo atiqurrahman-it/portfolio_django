@@ -19,14 +19,18 @@
             <div class="swiper-slide">
               <img src="{{portfoliodetails.image.url}}" alt="" />
             </div>
-
+            
+            {% if extra_image %}
+            {% for img in extra_image %}
             <div class="swiper-slide">
-              <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="" />
+              <img src="{{img.eimage.url}}" alt="" />
             </div>
+            {% endfor %}
+            {%else%}
+            <h2> extra image found </h2>
+            {%endif %}
 
-            <div class="swiper-slide">
-              <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="" />
-            </div>
+
           </div>
           <div class="swiper-pagination"></div>
         </div>

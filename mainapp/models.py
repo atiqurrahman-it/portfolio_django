@@ -189,6 +189,15 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.title
+#extra image for portfolio 
+class Extera_Images(models.Model):
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, blank=True,null=True)
+    eimage = models.ImageField(blank=True, upload_to='product_pic/')
+
+    def __str__(self):
+        return self.title
+
 
 
 class Contact(models.Model):
@@ -196,7 +205,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(blank=True)
     subject = models.CharField(max_length=300,blank=True)
-    Meassage = models.TextField(blank=True)
+    meassage = models.TextField(blank=True)
     create_at = models.DateTimeField(auto_now_add=True,null=True,blank=True)
     update_at = models.DateTimeField(auto_now=True,null=True,blank=True)
 

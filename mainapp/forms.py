@@ -1,7 +1,14 @@
 from django import forms
+from django.forms import ModelForm
+
+from .models import Contact
 
 
-class UserContact(forms.Form):
+class UserContact(forms.ModelForm):
+    class Meta:
+        model=Contact
+        fields=['name','subject','email',"message"]
+    
 
     name = forms.CharField(error_messages={'required':"fill must be filed up !!"}, label='', required=True, widget=forms.TextInput(attrs={
         'class': 'form-control',
@@ -18,11 +25,13 @@ class UserContact(forms.Form):
         'placeholder': 'Type your subject',
 
     }))
-    Meassage = forms.CharField(label='', required=True, widget=forms.Textarea(attrs={'class': 'form-control',
+    message = forms.CharField(label='', required=True, widget=forms.Textarea(attrs={'class': 'form-control',
                                                                                     'rows': 8,
                                                                                     'placeholder': 'Type your Message'
                                                                                     }
                                                                              ))
+
+                                                                           
 
   
   

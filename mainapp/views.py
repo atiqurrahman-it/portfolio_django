@@ -1,5 +1,6 @@
-from django.shortcuts import render,get_object_or_404,HttpResponse
-from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education,Experience,Portfolio_Category,Portfolio
+from webbrowser import get
+from django.shortcuts import render,get_object_or_404,redirect
+from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education,Experience,Portfolio_Category,Extera_Images,Portfolio
 from django.http import HttpResponseRedirect
 
 from .forms import UserContact
@@ -27,13 +28,12 @@ def HomePage(request):
 
     # Contact part 
     if request.method == 'POST':
-        print(request.post)
         form = UserContact(request.POST)
         if form.is_valid():
-            Message = form.cleaned_data.get('Message')
-            print(Message)
-            #Counts.objects.create(name=name, email=email, subject=subject, Meassage=Message)
-            return HttpResponseRedirect('/thanks/')
+            form.save()
+            print("meassage")
+            #Counts.objects.create(name=name, email=email, subject=subject, meassage=message)
+            return redirect('/')
         else:
             print("form is error")
     else:
@@ -57,22 +57,28 @@ def HomePage(request):
 
 
 
-def PortfolioSingleView(request,id):
+def PortfolioSingleView(request,prot_id):
     try:
-        pro =get_object_or_404(Portfolio,id=id)
+        pro =get_object_or_404(Portfolio,id=prot_id)
+        # extra image for portfolio
+        extra_image=Extera_Images.objects.filter(id=pro.id)
     except:
-         pro =get_object_or_404(Portfolio,id=id)
-
+        pass
     #optinal part for body bacground pictuer show er jonno
     try:
         aboutMe = get_object_or_404(AboutMe)
     except:
         aboutMe = AboutMe.objects.latest('id') 
-        
+
+    # extra image query 
+
+
 
     data={
         "portfoliodetails":pro,
+        "extra_image":extra_image,
         "aboutme":aboutMe,
+       
     }
     return render(request,'portfolio-details.html',data)
 
