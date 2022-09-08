@@ -192,11 +192,11 @@ class Portfolio(models.Model):
 #extra image for portfolio 
 class Extera_Images(models.Model):
     portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200, blank=True,null=True)
+    title = models.CharField(max_length=200)
     eimage = models.ImageField(blank=True, upload_to='product_pic/')
 
     def __str__(self):
-        return self.title
+        return self.title 
 
 
 
