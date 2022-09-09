@@ -31,8 +31,21 @@ def HomePage(request):
         form = UserContact(request.POST)
         if form.is_valid():
             form.save()
-            print("meassage")
             #Counts.objects.create(name=name, email=email, subject=subject, meassage=message)
+            #  email body for send me 
+            from_email=form.cleaned_data.get("email")
+            subject=form.cleaned_data.get("subject")
+            body = {
+                'name': form.cleaned_data['name'],
+                'email': form.cleaned_data['email'],
+                'details': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
+            # this mail send  message
+            # to_email = settings.EMAIL_HOST_USER
+            # send_mail(subject, message, from_email, [to_email])
+            print(message)
+            
             return redirect('/')
         else:
             print("form is error")
@@ -69,10 +82,6 @@ def PortfolioSingleView(request,prot_id):
         aboutMe = get_object_or_404(AboutMe)
     except:
         aboutMe = AboutMe.objects.latest('id') 
-
-    # extra image query 
-
-
 
     data={
         "portfoliodetails":pro,
