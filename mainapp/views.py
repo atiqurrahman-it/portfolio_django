@@ -1,9 +1,13 @@
 from webbrowser import get
-from django.shortcuts import render,get_object_or_404,redirect
-from .models import AboutMe,Skills,TESTIMONIALS,Counts,Service,Education,Experience,Portfolio_Category,Extera_Images,Portfolio
+
+from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import UserContact
+from .models import (TESTIMONIALS, AboutMe, Counts, Education, Experience,
+                     Extera_Images, Portfolio, Portfolio_Category, Service,
+                     Skills)
 
 # Create your views here.
 
@@ -32,9 +36,11 @@ def HomePage(request):
         if form.is_valid():
             form.save()
             #Counts.objects.create(name=name, email=email, subject=subject, meassage=message)
+
             #  email body for send me 
             from_email=form.cleaned_data.get("email")
             subject=form.cleaned_data.get("subject")
+            name=form.cleaned_data.get('name')
             body = {
                 'name': form.cleaned_data['name'],
                 'email': form.cleaned_data['email'],
@@ -45,6 +51,7 @@ def HomePage(request):
             # to_email = settings.EMAIL_HOST_USER
             # send_mail(subject, message, from_email, [to_email])
             print(message)
+            messages.success(request, name+' thanks for Contac')
             
             return redirect('/')
         else:

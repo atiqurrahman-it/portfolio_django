@@ -107,6 +107,15 @@
  <!-- Template Main JS File -->
  <script src="{% static 'assets/js/main.js' %}"></script>
 
+  <script> 
+
+    setTimeout(function(){
+      if( $('#messag').length >0) {
+          $('#messag').remove();
+      }
+  }, 1000);
+
+  </script>
 
 
 </body>
