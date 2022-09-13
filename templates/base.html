@@ -34,9 +34,46 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      background-color: #040404;
+      color: #fff;
+      position: relative;
+      background: transparent;
+    }
+    {% if aboutme.cover_picture %} 
+    body::before {
+      content: "";
+      position: fixed;
+      background: #040404 url({{ aboutme.cover_picture.url }}); 
+      background-size: cover;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      z-index: -1;
+    }
+    {% else %}
+    body::before {
+      content: "";
+      position: fixed;
+      background: #040404; 
+      background-size: cover;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      z-index: -1;
+    }
+    {%endif%}
+
+  </style>
+
 </head>
 
-<body {% if aboutme %} style="background-image: url({{ aboutme.cover_picture.url }});top:right;no-repeat;background-size:cover;" {%endif%}>
+<body>
 
 <!-- ======= Header loaded ======= -->
 <!-- End Header -->
