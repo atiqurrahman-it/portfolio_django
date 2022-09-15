@@ -14,6 +14,11 @@ from pathlib import Path
 
 # for django_heroku 
 import django_heroku
+import dj_database_url
+from decouple import config
+
+
+
 from django.contrib.messages import constants as messages
 
 #message show 
@@ -56,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # heroku server 
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolioProject.urls'
@@ -131,6 +138,9 @@ STATICFILES_DIRS = [
     # or 'HomePage_app/static'
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# heroku server 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # or STATIC_ROOT=BASE_DIR/'staticfiles'
 # py manage.py collectstatic
 
