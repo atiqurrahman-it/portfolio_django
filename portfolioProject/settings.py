@@ -38,7 +38,7 @@ SECRET_KEY = 'django-insecure-oo(xv23!p+jbj*^o(xo@4$=ko*iuq)fc@jr@46)ipw=qt@q7pb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # heroku server 
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolioProject.urls'
@@ -139,8 +139,9 @@ STATICFILES_DIRS = [
     # or 'HomePage_app/static'
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # heroku server 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # or STATIC_ROOT=BASE_DIR/'staticfiles'
 # py manage.py collectstatic
