@@ -9,17 +9,14 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
+import dj_database_url
 # for django_heroku 
 import django_heroku
-
-import dj_database_url
 from decouple import config
-
-
-
 from django.contrib.messages import constants as messages
 
 #message show 
