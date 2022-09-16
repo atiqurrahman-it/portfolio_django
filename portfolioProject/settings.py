@@ -14,6 +14,7 @@ from pathlib import Path
 
 # for django_heroku 
 import django_heroku
+
 import dj_database_url
 from decouple import config
 
@@ -37,7 +38,7 @@ SECRET_KEY = 'django-insecure-oo(xv23!p+jbj*^o(xo@4$=ko*iuq)fc@jr@46)ipw=qt@q7pb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
