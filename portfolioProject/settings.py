@@ -13,10 +13,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
-import dj_database_url
+# import dj_database_url
 # for django_heroku 
 import django_heroku
-from decouple import config
+# from decouple import config
+
 from django.contrib.messages import constants as messages
 
 #message show 
