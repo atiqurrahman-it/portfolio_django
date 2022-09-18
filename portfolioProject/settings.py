@@ -9,19 +9,20 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
-from pathlib import Path
-
 # for django_heroku 
+# import dj_database_url
+import os
+from django.test.runner import DiscoverRunner
 import django_heroku
+from pathlib import Path
+# message show 
 from django.contrib.messages import constants as messages
-
 #message show 
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# # heroku sever 
+# IS_HEROKU = "DYNO" in os.environ
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -30,9 +31,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-oo(xv23!p+jbj*^o(xo@4$=ko*iuq)fc@jr@46)ipw=qt@q7pb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
+# if IS_HEROKU:
+#     ALLOWED_HOSTS = ["*"]
+# else:
+#     ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ["*"]
+
+# SECURITY WARNING: don't run with debug turned on in production!
+# if not IS_HEROKU:
+#     DEBUG = True
+
+# Application definition
 
 
 # Application definition
@@ -63,7 +77,7 @@ ROOT_URLCONF = 'portfolioProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,8 +91,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolioProject.wsgi.application'
-
-
+# heroku server 
+MAX_CONN_AGE = 600
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -88,6 +102,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# herokur server
+
 
 
 # Password validation
@@ -136,6 +153,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# heroku server 
+# Enable WhiteNoise's GZip compression of static assets.
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
