@@ -9,14 +9,12 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-# for django_heroku 
-# import dj_database_url
 import os
-from django.test.runner import DiscoverRunner
-import django_heroku
 from pathlib import Path
+
 # message show 
 from django.contrib.messages import constants as messages
+
 #message show 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -154,9 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# heroku server 
-# Enable WhiteNoise's GZip compression of static assets.
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 
 
@@ -172,5 +168,3 @@ MESSAGE_TAGS = {
 
 }
 
-# for django heroku
-django_heroku.settings(locals())
